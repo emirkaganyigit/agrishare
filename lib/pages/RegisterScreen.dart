@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:agrishare/pages/LoginScreen.dart";
+import 'package:firebase_auth/firebase_auth.dart';
+import 'LoginScreen.dart';  // Eğer yönlendirme yapılacaksa, gerekli
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -7,8 +8,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isNotRobot = false;
 
   @override
@@ -18,16 +20,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  void _register() {
+  void _register() async {
     if (_isNotRobot) {
-      // Kaydetme işlemi burada yapılabilir, örneğin bir API'ye e-posta ve şifre gönderilebilir.
-      // Ancak şu an için sadece login ekranına yönlendiriyoruz.
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
+      try {
+        // Firebase ile kullanıcı kaydı yapma
+        await _auth.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        // Kayıt başarılıysa, Login ekranına yönlendir
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+      } catch (e) {
+        // Firebase'den gelen hataları yakalama ve gösterme
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Registration Error'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+        );
+      }
     } else {
-      // Kullanıcı robot olmadığını doğrulamadıysa uyarı verilir.
+      // Robot kontrolü başarısızsa uyarı göster
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -56,34 +79,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/logo.png', // Logonun yolunu belirtin
-              height: 100,
-            ),
+            Image.asset('logo.jpg', height: 100),  // Logo dosya yolu
             SizedBox(height: 20),
-            Text(
-              'register',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text('register', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             SizedBox(height: 20),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
+              decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
             ),
             SizedBox(height: 20),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
               obscureText: true,
+              decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
             ),
             SizedBox(height: 20),
             CheckboxListTile(
@@ -102,9 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
               ),
               child: Text('Register', style: TextStyle(fontSize: 18)),
             ),

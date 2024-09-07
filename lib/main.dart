@@ -1,10 +1,26 @@
+import 'package:agrishare/pages/EntrepreneurMain.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:agrishare/pages/LoginRegisterScreen.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
+  // Firebase yapılandırma detayları
+  const firebaseConfig = FirebaseOptions(
+    apiKey: "AIzaSyD9LjRYZhPrn4bPxAErYDOzRzSXrBo0Rls", // Firebase konsolundan aldığınız bilgilerle değiştirin
+    authDomain: "agrishare-ed20f.firebaseapp.com",
+    projectId: "agrishare-ed20f",
+    storageBucket: "agrishare-ed20f.appspot.com",
+    messagingSenderId: "154275439031",
+    appId: "1:154275439031:android:1b03919fd12e146f080832",
+  );
 
-void main() {
+  await Firebase.initializeApp(
+    options: firebaseConfig,
+  );
+  
   runApp(AgrishareApp());
 }
 
@@ -27,7 +43,6 @@ class _InitialPageState extends State<InitialPage> {
   @override
   void initState() {
     super.initState();
-    // 5 saniye sonra "Login-Register Screen" sayfasına yönlendir.
     Timer(Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
@@ -44,18 +59,12 @@ class _InitialPageState extends State<InitialPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo ve yazı
-            Column(
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.transparent,
-                  child: Image.asset('logo.jpg'), // Logonun yolunu belirtin
-                )
-              ],
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.transparent,
+              child: Image.asset('logo.jpg'), // Logo yolu güncellendi
             ),
             SizedBox(height: 40),
-            // Yüklenme animasyonu
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6BBE92)),
             ),
@@ -65,4 +74,3 @@ class _InitialPageState extends State<InitialPage> {
     );
   }
 }
-

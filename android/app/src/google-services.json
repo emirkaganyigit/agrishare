@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "154275439031",
+    "project_id": "agrishare-ed20f",
+    "storage_bucket": "agrishare-ed20f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154275439031:android:1b03919fd12e146f080832",
+        "android_client_info": {
+          "package_name": "com.example.agrishare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9LjRYZhPrn4bPxAErYDOzRzSXrBo0Rls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
