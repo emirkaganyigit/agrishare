@@ -1,5 +1,12 @@
-dependencies {
-    classpath "com.google.gms:google-services:4.4.2"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2' // Android Gradle Plugin versiyonu
+        classpath 'com.google.gms:google-services:4.3.10' // Google Services eklentisi
+    }
 }
 
 
@@ -20,5 +27,9 @@ subprojects {
 }
 
 tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+task clean(type: Delete) {
     delete rootProject.buildDir
 }
