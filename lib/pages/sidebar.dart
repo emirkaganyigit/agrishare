@@ -87,7 +87,7 @@ class Sidebar extends StatelessWidget {
                       text: 'Help Center',
                       onTap: () {
                         // Handle help center navigation
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HelpCenterPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HelpCenter()));
                       },
                     ),
                     Divider(color: Colors.white),

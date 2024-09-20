@@ -84,7 +84,7 @@ class RoleScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LandownerMain()),
+                  MaterialPageRoute(builder: (context) => LandOwnerMainPage()),
                 );
               },
               child: Container(

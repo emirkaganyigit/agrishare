@@ -1,8 +1,10 @@
-import 'package:agrishare/pages/EntrepreneurMain.dart';
+import 'package:agrishare/pages/CreateRequestScreen.dart';
+import 'package:agrishare/pages/LandownerMain.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:agrishare/pages/LoginRegisterScreen.dart';
+import 'package:agrishare/pages/EntrepreneurMain.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +48,7 @@ class _InitialPageState extends State<InitialPage> {
     Timer(Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginRegisterScreen()),
+        MaterialPageRoute(builder: (context) => LandOwnerMainPage()),
       );
     });
   }

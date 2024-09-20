@@ -4,11 +4,8 @@ import 'Sidebar.dart'; // Import the Sidebar
 import 'package:agrishare/pages/BrowseAgrilands.dart';
 import 'package:agrishare/pages/Contact.dart';
 import 'package:agrishare/pages/CreateRequestScreen.dart';
-import 'package:agrishare/pages/ViewOffersPage.dart';
+import 'package:agrishare/pages/offers1.dart';
 
-void main() {
-  runApp(AgrishareApp());
-}
 
 class AgrishareApp extends StatelessWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'navbar.dart'; // Import navbar.dart for the bottom navigation bar
+import 'navbar2.dart'; // Import navbar.dart for the bottom navigation bar
 import 'message.dart'; // Import the message page
 
-class ContactPage extends StatelessWidget {
+class Contact2Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +54,7 @@ class ContactPage extends StatelessWidget {
         },
         child: Icon(Icons.add),
       ),
-      bottomNavigationBar: NavBar(), // Import navbar
+      bottomNavigationBar: NavBar2(), // Import navbar
     );
   }
 

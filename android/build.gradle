@@ -2,11 +2,16 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" } // Optional, if needed for other plugins
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.2' // Android Gradle Plugin versiyonu
-        classpath 'com.google.gms:google-services:4.3.10' // Google Services eklentisi
+        classpath 'com.android.tools.build:gradle:7.0.2' // Android Gradle Plugin version
+        classpath 'com.google.gms:google-services:4.3.10' // Google Services plugin
     }
+}
+
+ext {
+    compileSdkVersion = 31
 }
 
 
@@ -15,6 +20,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
     }
 }
 
@@ -27,9 +34,5 @@ subprojects {
 }
 
 tasks.register("clean", Delete) {
-    delete rootProject.buildDir
-}
-
-task clean(type: Delete) {
     delete rootProject.buildDir
 }
